@@ -1,0 +1,86 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name : Terraform Aws Acm
+
+# License of this project
+license: "MIT"
+
+# Canonical GitHub repo
+github_repo: clouddrove/terraform-aws-acm
+
+# Badges to display
+badges:
+  - name: "Terraform"
+    image: "https://img.shields.io/badge/Terraform-v0.12-green"
+    url: "https://www.terraform.io"
+  - name: "Licence"
+    image: "https://img.shields.io/badge/License-MIT-blue.svg"
+    url: "LICENSE.md"
+
+#  description of this project
+description: |-
+  This terraform module is used for requesting or importing SSL/TLS certificate with validation.
+
+# extra content
+include:
+  - "terraform.md"
+
+# How to use this project
+usage : |-
+  Here are some examples of how you can use this module in your inventory structure:
+  ### ACM with DNS
+  ```hcl
+  module "acm" {
+    source                   = "git::https://github.com/clouddrove/terraform-aws-acm.git"
+    name                     = "certificate"
+    application              = "clouddrove"
+    environment              = "test"
+    label_order              = ["environment", "name", "application"]
+    domain_name              = "clouddrove.com"
+    validation_method        = "DNS"
+    dns_validation           = false
+    enable_dns_validation    = false
+  }
+  ```
+
+  ### ACM with Email
+  ```hcl
+  module "acm" {
+    source                = "git::https://github.com/clouddrove/terraform-aws-acm.git"
+    name                  = "certificate"
+    application           = "clouddrove"
+    environment           = "test"
+    label_order           = ["environment", "name", "application"]
+    domain_name           = "clouddrove.com"
+    validation_method     = "EMAIL"
+    validate_certificate  = false
+  }
+  ```
+
+  ### ACM with Import Certificate
+  ```hcl
+  module "acm" {
+    source              = "git::https://github.com/clouddrove/terraform-aws-acm.git"
+    name                = "certificate"
+    application         = "clouddrove"
+    environment         = "test"
+    label_order         = ["environment", "name", "application"]
+    private_key         = "./../../../clouddrove-private-key.pem"
+    certificate_body    = "./../../../clouddrove-cert.pem"
+    certificate_chain   = "./../../../clouddrove-chain.crt"
+    import_certificate  = true
+  }
+  ```
+# Contributors to this project
+contributors:
+  - name: "Kamlesh Bhargav"
+    github: "kamleshbhargav"
+  - name: "Nikita Dugar"
+    github: "nikitadugar"
+  - name: "Sohan Yadav"
+    github: "sohanyadav"
