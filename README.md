@@ -122,7 +122,7 @@ module "acm" {
 | certificate_body | Path of certificate body. | string | `~` | no |
 | certificate_chain | Path of certificate chain. | string | `` | no |
 | delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | string | `-` | no |
-| domain_name | A domain name for which the certificate should be issued. | string | `` | no |
+| domain_name | A domain name for which the certificate should be issued. | string | - | yes |
 | enable_acm_certificate | Set to false to prevent the creation of a acm certificate. | string | `true` | no |
 | enable_dns_validation | Set to prevent validation of DNS. | string | `false` | no |
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | string | `` | no |
@@ -133,7 +133,7 @@ module "acm" {
 | tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | map | `<map>` | no |
 | ttl | Time to live. | number | `600` | no |
 | validate_certificate | Set to false to prevent the validation of a acm certificate. | string | `false` | no |
-| validation_method | Which method to use for validation, DNS or EMAIL. | string | `` | no |
+| validation_method | Which method to use for validation, DNS or EMAIL. | string | - | yes |
 
 ## Outputs
 
@@ -160,7 +160,7 @@ You need to run the following command in the testing folder:
 ## Feedback
 If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/clouddrove/terraform-aws-acm/issues), or feel free to drop us an email at [hello@clouddrove.com](mailto:hello@clouddrove.com).
 
-If you have found it worth your time, go ahead and give us a * on [our GitHub](https://github.com/clouddrove/terraform-aws-acm)!
+If you have found it worth your time, go ahead and give us a ★ on [our GitHub](https://github.com/clouddrove/terraform-aws-acm)!
 
 ## About us
 
