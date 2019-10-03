@@ -11,11 +11,6 @@ output "arn" {
   description = "The ARN of the Certificate."
 }
 
-output "domain_validation_options" {
-  value       = var.import_certificate ? join("", aws_acm_certificate.import-cert.*.domain_validation_options) : join("", aws_acm_certificate.cert.*.domain_validation_options)
-  description = "The domain validation option of the Certificate."
-}
-
 output "tags" {
   value       = module.labels.tags
   description = "A mapping of tags to assign to the resource."
