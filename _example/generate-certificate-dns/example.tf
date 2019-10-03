@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "acm" {
-  source = "git::https://github.com/clouddrove/terraform-aws-acm.git"
+  source = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.2"
 
   name        = "certificate"
   application = "clouddrove"
