@@ -3,12 +3,12 @@ provider "aws" {
 }
 
 module "acm" {
-  source = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.2"
+  source = "./../../"
 
   name        = "certificate"
   application = "clouddrove"
   environment = "test"
-  label_order = ["environment", "name", "application"]
+  label_order = ["environment", "application", "name"]
 
   domain_name          = "clouddrove.com"
   validation_method    = "EMAIL"
