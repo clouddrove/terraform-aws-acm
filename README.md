@@ -70,11 +70,11 @@ Here are some examples of how you can use this module in your inventory structur
 ### ACM with DNS
 ```hcl
 module "acm" {
-  source                   = "git::https://github.com/clouddrove/terraform-aws-acm.git"
+  source                   = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.1"
   name                     = "certificate"
   application              = "clouddrove"
   environment              = "test"
-  label_order              = ["environment", "name", "application"]
+  label_order              = ["environment", "application", "name"]
   domain_name              = "clouddrove.com"
   validation_method        = "DNS"
   dns_validation           = false
@@ -85,11 +85,11 @@ module "acm" {
 ### ACM with Email
 ```hcl
 module "acm" {
-  source                = "git::https://github.com/clouddrove/terraform-aws-acm.git"
+  source                = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.1"
   name                  = "certificate"
   application           = "clouddrove"
   environment           = "test"
-  label_order           = ["environment", "name", "application"]
+  label_order           = ["environment", "application", "name"]
   domain_name           = "clouddrove.com"
   validation_method     = "EMAIL"
   validate_certificate  = false
@@ -99,11 +99,11 @@ module "acm" {
 ### ACM with Import Certificate
 ```hcl
 module "acm" {
-  source              = "git::https://github.com/clouddrove/terraform-aws-acm.git"
+  source              = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.1"
   name                = "certificate"
   application         = "clouddrove"
   environment         = "test"
-  label_order         = ["environment", "name", "application"]
+  label_order         = ["environment", "application", "name"]
   private_key         = "./../../../clouddrove-private-key.pem"
   certificate_body    = "./../../../clouddrove-cert.pem"
   certificate_chain   = "./../../../clouddrove-chain.crt"
