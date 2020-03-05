@@ -77,22 +77,25 @@ module "acm" {
   label_order              = ["environment", "application", "name"]
   domain_name              = "clouddrove.com"
   validation_method        = "DNS"
-  dns_validation           = false
   enable_dns_validation    = false
+  enable_aws_certificate   = true
+
 }
 ```
 
 ### ACM with Email
 ```hcl
 module "acm" {
-  source                = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.1"
-  name                  = "certificate"
-  application           = "clouddrove"
-  environment           = "test"
-  label_order           = ["environment", "application", "name"]
-  domain_name           = "clouddrove.com"
-  validation_method     = "EMAIL"
-  validate_certificate  = false
+  source                 = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.1"
+  name                   = "certificate"
+  application            = "clouddrove"
+  environment            = "test"
+  label_order            = ["environment", "application", "name"]
+  domain_name            = "clouddrove.com"
+  validation_method      = "EMAIL"
+  validate_certificate   = false
+  enable_aws_certificate = true
+
 }
 ```
 

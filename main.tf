@@ -34,7 +34,7 @@ resource "aws_acm_certificate" "import-cert" {
 # Description : This terraform module is used for requesting or importing SSL/TLS
 #               certificate with validation.
 resource "aws_acm_certificate" "cert" {
-  count = var.enable_acm_certificate && var.import_certificate == false ? 1 : 0
+  count = var.enable_acm_certificate && var.enable_aws_certificate == false ? 1 : 0
 
   domain_name       = var.domain_name
   validation_method = var.validation_method
