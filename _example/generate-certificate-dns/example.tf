@@ -13,5 +13,6 @@ module "acm" {
   domain_name           = "clouddrove.com"
   validation_method     = "DNS"
   enable_dns_validation = false
+  enable_aws_certificate = true
 }
 

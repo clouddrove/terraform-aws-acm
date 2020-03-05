@@ -13,5 +13,6 @@ module "acm" {
   domain_name          = "clouddrove.com"
   validation_method    = "EMAIL"
   validate_certificate = false
+  enable_aws_certificate = true
 }
 
