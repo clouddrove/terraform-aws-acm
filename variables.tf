@@ -47,11 +47,13 @@ variable "tags" {
 variable "domain_name" {
   type        = string
   description = "A domain name for which the certificate should be issued."
+  default     = ""
 }
 
 variable "validation_method" {
   type        = string
   description = "Which method to use for validation, DNS or EMAIL."
+  default     = ""
 }
 
 variable "enable_dns_validation" {
