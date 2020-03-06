@@ -72,7 +72,7 @@ Here are some examples of how you can use this module in your inventory structur
 ### ACM with DNS
 ```hcl
 module "acm" {
-  source                   = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.1"
+  source                   = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.2"
   name                     = "certificate"
   application              = "clouddrove"
   environment              = "test"
@@ -87,7 +87,7 @@ module "acm" {
 ### ACM with Email
 ```hcl
 module "acm" {
-  source                = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.1"
+  source                = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.2"
   name                  = "certificate"
   application           = "clouddrove"
   environment           = "test"
@@ -102,7 +102,7 @@ module "acm" {
 ### ACM with Import Certificate
 ```hcl
 module "acm" {
-  source              = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.1"
+  source              = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.2"
   name                = "certificate"
   application         = "clouddrove"
   environment         = "test"
@@ -128,7 +128,7 @@ module "acm" {
 | certificate_body | Path of certificate body. | string | `~` | no |
 | certificate_chain | Path of certificate chain. | string | `` | no |
 | delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | string | `-` | no |
-| domain_name | A domain name for which the certificate should be issued. | string | - | yes |
+| domain_name | A domain name for which the certificate should be issued. | string | `` | no |
 | enable_acm_certificate | Set to false to prevent the creation of a acm certificate. | string | `true` | no |
 | enable_aws_certificate | Set to false to prevent the creation of a acm certificate. | bool | `false` | no |
 | enable_dns_validation | Set to prevent validation of DNS. | string | `false` | no |
@@ -140,7 +140,7 @@ module "acm" {
 | tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | map | `<map>` | no |
 | ttl | Time to live. | number | `600` | no |
 | validate_certificate | Set to false to prevent the validation of a acm certificate. | string | `false` | no |
-| validation_method | Which method to use for validation, DNS or EMAIL. | string | - | yes |
+| validation_method | Which method to use for validation, DNS or EMAIL. | string | `` | no |
 
 ## Outputs
 
