@@ -36,7 +36,7 @@ usage : |-
   ### ACM with DNS
   ```hcl
   module "acm" {
-    source                   = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.4"
+    source                   = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.5"
     name                     = "certificate"
     application              = "clouddrove"
     environment              = "test"
