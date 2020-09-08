@@ -67,9 +67,9 @@ resource "aws_route53_record" "default" {
   zone_id         = join("", data.aws_route53_zone.default.*.zone_id)
   ttl             = var.ttl
   allow_overwrite = true
-  name            = aws_acm_certificate.cert[0].domain_validation_options.0.resource_record_name
-  type            = aws_acm_certificate.cert[0].domain_validation_options.0.resource_record_type
-  records         = [aws_acm_certificate.cert[0].domain_validation_options.0.resource_record_value]
+  name            = join("",aws_acm_certificate.cert[0].domain_validation_options.*.resource_record_name)
+  type            = join("",aws_acm_certificate.cert[0].domain_validation_options.*.resource_record_type)
+  records         = [join("",aws_acm_certificate.cert[0].domain_validation_options.*.resource_record_value)]
 }
 
 # Module      : ACM  CERTIFICATE VALIDATION
