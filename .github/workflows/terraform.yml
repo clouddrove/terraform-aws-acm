@@ -57,16 +57,6 @@ jobs:
         with:
           actions_subcommand: 'init'
           tf_actions_working_dir: ./_example/import-certificate
-      - name: 'Terraform validate'
-        uses: 'clouddrove/github-actions@v4.0'
-        with:
-          actions_subcommand: 'validate'
-          tf_actions_working_dir: ./_example/import-certificate
-      - name: 'Terraform plan'
-        uses: 'clouddrove/github-actions@v4.0'
-        with:
-          actions_subcommand: 'plan'
-          tf_actions_working_dir: ./_example/import-certificate
 
       - name: 'Slack Notification'
         uses: clouddrove/action-slack@v2
