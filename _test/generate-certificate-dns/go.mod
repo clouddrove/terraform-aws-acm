@@ -1,4 +1,4 @@
-module github.com/clouddrove/terraform-aws-ecr/_example/generate-certificate-dns
+module github.com/clouddrove/terraform-aws-acm/_example/generate-certificate-dns
 
 go 1.13
 
