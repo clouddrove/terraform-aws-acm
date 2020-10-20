@@ -22,7 +22,7 @@ jobs:
         uses: 'clouddrove/github-actions@v4.0'
         with:
           actions_subcommand: 'terratest'
-          tf_actions_working_dir: ./_test/generate-certificate-dns
+          tf_actions_working_dir: _test/generate-certificate-dns
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -31,7 +31,7 @@ jobs:
         uses: 'clouddrove/github-actions@v4.0'
         with:
           actions_subcommand: 'terratest'
-          tf_actions_working_dir: ./_test/generate-certificate-email
+          tf_actions_working_dir: _test/generate-certificate-email
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
