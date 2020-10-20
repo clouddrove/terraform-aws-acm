@@ -7,7 +7,7 @@
 #              for resources. You can use terraform-labels to implement a strict naming
 #              convention.
 module "labels" {
-  source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.12.0"
+  source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.13.0"
 
   name        = var.name
   application = var.application
@@ -67,9 +67,9 @@ resource "aws_route53_record" "default" {
   zone_id         = join("", data.aws_route53_zone.default.*.zone_id)
   ttl             = var.ttl
   allow_overwrite = true
-  name            = join("",aws_acm_certificate.cert[0].domain_validation_options.*.resource_record_name)
-  type            = join("",aws_acm_certificate.cert[0].domain_validation_options.*.resource_record_type)
-  records         = [join("",aws_acm_certificate.cert[0].domain_validation_options.*.resource_record_value)]
+  name            = join("", aws_acm_certificate.cert[0].domain_validation_options.*.resource_record_name)
+  type            = join("", aws_acm_certificate.cert[0].domain_validation_options.*.resource_record_type)
+  records         = [join("", aws_acm_certificate.cert[0].domain_validation_options.*.resource_record_value)]
 }
 
 # Module      : ACM  CERTIFICATE VALIDATION
