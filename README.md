@@ -14,7 +14,7 @@
 <p align="center">
 
 <a href="https://www.terraform.io">
-  <img src="https://img.shields.io/badge/Terraform-v0.12-green" alt="Terraform">
+  <img src="https://img.shields.io/badge/Terraform-v0.13-green" alt="Terraform">
 </a>
 <a href="LICENSE.md">
   <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="Licence">
@@ -51,7 +51,7 @@ We have [*fifty plus terraform modules*][terraform_modules]. A few of them are c
 
 This module has a few dependencies: 
 
-- [Terraform 0.12](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [Terraform 0.13](https://learn.hashicorp.com/terraform/getting-started/install.html)
 - [Go](https://golang.org/doc/install)
 - [github.com/stretchr/testify/assert](https://github.com/stretchr/testify)
 - [github.com/gruntwork-io/terratest/modules/terraform](https://github.com/gruntwork-io/terratest)
@@ -72,7 +72,8 @@ Here are some examples of how you can use this module in your inventory structur
 ### ACM with DNS
 ```hcl
 module "acm" {
-  source                   = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.5"
+  source                   = "clouddrove/acm/aws"
+  version                  = "0.13.0"
   name                     = "certificate"
   application              = "clouddrove"
   environment              = "test"
@@ -87,7 +88,8 @@ module "acm" {
 ### ACM with Email
 ```hcl
 module "acm" {
-  source                = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.4"
+  source                = "clouddrove/acm/aws"
+  version               = "0.13.0"
   name                  = "certificate"
   application           = "clouddrove"
   environment           = "test"
@@ -102,7 +104,8 @@ module "acm" {
 ### ACM with Import Certificate
 ```hcl
 module "acm" {
-  source              = "git::https://github.com/clouddrove/terraform-aws-acm.git?ref=tags/0.12.4"
+  source              = "clouddrove/acm/aws"
+  version             = "0.13.0"
   name                = "certificate"
   application         = "clouddrove"
   environment         = "test"
@@ -122,32 +125,33 @@ module "acm" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| application | Application \(e.g. `cd` or `clouddrove`\). | string | `""` | no |
-| attributes | Additional attributes \(e.g. `1`\). | list | `<list>` | no |
-| certificate\_body | Path of certificate body. | string | `"~"` | no |
-| certificate\_chain | Path of certificate chain. | string | `""` | no |
-| delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | string | `"-"` | no |
-| domain\_name | A domain name for which the certificate should be issued. | string | `""` | no |
-| enable\_acm\_certificate | Set to false to prevent the creation of a acm certificate. | string | `"true"` | no |
-| enable\_aws\_certificate | Set to false to prevent the creation of a acm certificate. | bool | `"false"` | no |
-| enable\_dns\_validation | Set to prevent validation of DNS. | string | `"false"` | no |
-| environment | Environment \(e.g. `prod`, `dev`, `staging`\). | string | `""` | no |
-| import\_certificate | Set to true or false to decide the creation and import of a acm certificate. | bool | `"false"` | no |
-| label\_order | Label order, e.g. `name`,`application`. | list | `<list>` | no |
-| managedby | ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'. | string | `"anmol@clouddrove.com"` | no |
-| name | Name  \(e.g. `app` or `cluster`\). | string | `""` | no |
-| private\_key | Path of private key. | string | `""` | no |
-| tags | Additional tags \(e.g. map\(`BusinessUnit`,`XYZ`\). | map | `<map>` | no |
-| ttl | Time to live. | number | `"600"` | no |
-| validate\_certificate | Set to false to prevent the validation of a acm certificate. | string | `"false"` | no |
-| validation\_method | Which method to use for validation, DNS or EMAIL. | string | `""` | no |
+|------|-------------|------|---------|:--------:|
+| application | Application (e.g. `cd` or `clouddrove`). | `string` | `""` | no |
+| attributes | Additional attributes (e.g. `1`). | `list` | `[]` | no |
+| certificate\_body | Path of certificate body. | `string` | `"~"` | no |
+| certificate\_chain | Path of certificate chain. | `string` | `""` | no |
+| delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | `string` | `"-"` | no |
+| domain\_name | A domain name for which the certificate should be issued. | `string` | `""` | no |
+| enable\_acm\_certificate | Set to false to prevent the creation of a acm certificate. | `bool` | `true` | no |
+| enable\_aws\_certificate | Set to false to prevent the creation of a acm certificate. | `bool` | `false` | no |
+| enable\_dns\_validation | Set to prevent validation of DNS. | `bool` | `false` | no |
+| environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
+| import\_certificate | Set to true or false to decide the creation and import of a acm certificate. | `bool` | `false` | no |
+| label\_order | Label order, e.g. `name`,`application`. | `list` | `[]` | no |
+| managedby | ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'. | `string` | `"anmol@clouddrove.com"` | no |
+| name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
+| private\_key | Path of private key. | `string` | `""` | no |
+| tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map` | `{}` | no |
+| ttl | Time to live. | `number` | `600` | no |
+| validate\_certificate | Set to false to prevent the validation of a acm certificate. | `string` | `false` | no |
+| validation\_method | Which method to use for validation, DNS or EMAIL. | `string` | `""` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | arn | The ARN of the Certificate. |
+| id | The ID of the Certificate. |
 | tags | A mapping of tags to assign to the resource. |
 
 
