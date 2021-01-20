@@ -40,7 +40,7 @@ usage : |-
     version                  = "0.14.0"
     name                     = "certificate"
     environment              = "test"
-    label_order         = ["name","environment"]
+    label_order              = ["name","environment"]
     domain_name              = "clouddrove.com"
     validation_method        = "DNS"
     enable_dns_validation    = false
@@ -55,7 +55,7 @@ usage : |-
     version               = "0.14.0"
     name                  = "certificate"
     environment           = "test"
-    label_order         = ["name","environment"]
+    label_order          = ["name","environment"]
     domain_name           = "clouddrove.com"
     validation_method     = "EMAIL"
     validate_certificate  = false

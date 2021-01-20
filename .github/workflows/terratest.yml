@@ -13,6 +13,7 @@ jobs:
 
       - name: 'Checkout'
         uses: actions/checkout@master
+
       - name: Configure AWS Credentials
         uses: clouddrove/configure-aws-credentials@v1
         with:
