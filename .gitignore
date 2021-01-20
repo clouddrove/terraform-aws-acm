@@ -5,3 +5,4 @@
 .idea
 *.iml
 *.sum
+*.terraform.lock.hcl

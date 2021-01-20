@@ -1,5 +1,5 @@
 # Module      : ACM CERTIFICATE
-# Description : This terraform module is used for requesting or importing SSL/TLS #               certificate with validation.
+# Description : Terraform ACM Certificate module outputs.
 
 output "id" {
   value       = var.import_certificate ? join("", aws_acm_certificate.import-cert.*.id) : join("", aws_acm_certificate.cert.*.id)

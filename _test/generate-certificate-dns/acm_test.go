@@ -29,6 +29,6 @@ func Test(t *testing.T) {
 	Tags := terraform.OutputMap(t, terraformOptions, "tags")
 
 	// Check that we get back the outputs that we expect
-	assert.Equal(t, "test-clouddrove-certificate", Tags["Name"])
+	assert.Equal(t, "certificate-test", Tags["Name"])
 	assert.Contains(t, Arn, "arn:aws:acm")
 }

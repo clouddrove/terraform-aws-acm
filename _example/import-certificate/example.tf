@@ -6,13 +6,11 @@ module "acm" {
   source = "./../../"
 
   name        = "certificate"
-  application = "clouddrove"
   environment = "test"
-  label_order = ["environment", "application", "name"]
+  label_order = ["name", "environment"]
 
   private_key        = "./../../../clouddrove-private-key.pem"
   certificate_body   = "./../../../clouddrove-cert.pem"
   certificate_chain  = "./../../../clouddrove-chain.crt"
   import_certificate = true
 }
-

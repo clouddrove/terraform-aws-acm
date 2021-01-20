@@ -6,10 +6,10 @@ variable "name" {
   description = "Name  (e.g. `app` or `cluster`)."
 }
 
-variable "application" {
+variable "repository" {
   type        = string
-  default     = ""
-  description = "Application (e.g. `cd` or `clouddrove`)."
+  default     = "https://registry.terraform.io/modules/clouddrove/acm/aws"
+  description = "Terraform current module repo"
 }
 
 variable "environment" {
@@ -19,55 +19,52 @@ variable "environment" {
 }
 
 variable "label_order" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "Label order, e.g. `name`,`application`."
 }
 
 variable "attributes" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "Additional attributes (e.g. `1`)."
 }
 
-variable "delimiter" {
-  type        = string
-  default     = "-"
-  description = "Delimiter to be used between `organization`, `environment`, `name` and `attributes`."
-}
-
 variable "tags" {
-  type        = map
+  type        = map(any)
   default     = {}
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
 }
 
 variable "managedby" {
   type        = string
-  default     = "anmol@clouddrove.com"
-  description = "ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'."
+  default     = "hello@clouddrove.com"
+  description = "ManagedBy, eg 'CloudDrove'"
 }
 
 # Module      : ACM CERTIFICATE
 # Description : Terraform ACM Certificate module variables.
 variable "domain_name" {
   type        = string
-  description = "A domain name for which the certificate should be issued."
   default     = ""
+  description = "A domain name for which the certificate should be issued."
 }
 
 variable "validation_method" {
   type        = string
-  description = "Which method to use for validation, DNS or EMAIL."
   default     = ""
+  description = "Which method to use for validation, DNS or EMAIL."
+
 }
 
 variable "enable_dns_validation" {
+  type        = bool
   default     = false
   description = "Set to prevent validation of DNS."
 }
 
 variable "enable_acm_certificate" {
+  type        = bool
   default     = true
   description = "Set to false to prevent the creation of a acm certificate."
 }
@@ -91,7 +88,7 @@ variable "certificate_chain" {
 }
 
 variable "validate_certificate" {
-  type        = string
+  type        = bool
   default     = false
   description = "Set to false to prevent the validation of a acm certificate."
 }
