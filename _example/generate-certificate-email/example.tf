@@ -6,13 +6,11 @@ module "acm" {
   source = "./../../"
 
   name        = "certificate"
-  application = "clouddrove"
   environment = "test"
-  label_order = ["environment", "application", "name"]
+  label_order = ["name", "environment"]
 
+  validate_certificate   = false
   domain_name            = "clouddrove.com"
   validation_method      = "EMAIL"
-  validate_certificate   = false
   enable_aws_certificate = true
 }
-
