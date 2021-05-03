@@ -38,9 +38,10 @@ resource "aws_acm_certificate" "import-cert" {
 resource "aws_acm_certificate" "cert" {
   count = var.enable_acm_certificate && var.enable_aws_certificate ? 1 : 0
 
-  domain_name       = var.domain_name
-  validation_method = var.validation_method
-  tags              = module.labels.tags
+  domain_name               = var.domain_name
+  validation_method         = var.validation_method
+  subject_alternative_names = var.subject_alternative_names
+  tags                      = module.labels.tags
   lifecycle {
     create_before_destroy = true
   }
