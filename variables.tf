@@ -50,6 +50,12 @@ variable "domain_name" {
   description = "A domain name for which the certificate should be issued."
 }
 
+variable "subject_alternative_names" {
+  type        = list(any)
+  default     = []
+  description = "Set of domains that should be SANs in the issued certificate. To remove all elements of a previously configured list, set this value equal to an empty list ([]) or use the terraform taint command to trigger recreation."
+}
+
 variable "validation_method" {
   type        = string
   default     = ""
