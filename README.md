@@ -79,7 +79,7 @@ Here are some examples of how you can use this module in your inventory structur
 ```hcl
 module "acm" {
   source                   = "clouddrove/acm/aws"
-  version                  = "1.0.1"
+  version                  = "1.3.0"
   name                     = "certificate"
   environment              = "test"
   label_order              = ["name","environment"]
@@ -94,7 +94,7 @@ module "acm" {
 ```hcl
 module "acm" {
   source                = "clouddrove/acm/aws"
-  version               = "1.0.1"
+  version               = "1.3.0"
   name                  = "certificate"
   environment           = "test"
   label_order          = ["name","environment"]
@@ -109,7 +109,7 @@ module "acm" {
 ```hcl
 module "acm" {
   source              = "clouddrove/acm/aws"
-  version             = "1.0.1"
+  version             = "1.3.0"
   name                = "certificate"
   environment         = "test"
   label_order         = ["name","environment"]
