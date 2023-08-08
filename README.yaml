@@ -15,19 +15,19 @@ github_repo: clouddrove/terraform-aws-acm
 
 # Badges to display
 badges:
-  - name: "Terraform"
-    image: "https://img.shields.io/badge/Terraform-v1.1.7-green"
-    url: "https://www.terraform.io"
-  - name: "Licence"
-    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
-    url: "LICENSE.md"
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/clouddrove/terraform-aws-acm.svg"
+    url: "https://github.com/clouddrove/terraform-aws-acm/releases/latest"
   - name: "tfsec"
     image: "https://github.com/clouddrove/terraform-aws-acm/actions/workflows/tfsec.yml/badge.svg"
     url: "https://github.com/clouddrove/terraform-aws-acm/actions/workflows/tfsec.yml"
-  - name: "static-checks"
-    image: "https://github.com/clouddrove/terraform-aws-acm/actions/workflows/terraform.yml/badge.svg"
-    url: "https://github.com/clouddrove/terraform-aws-acm/actions/workflows/terraform.yml"
+  - name: "Licence"
+    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
+    url: "LICENSE.md"
 
+prerequesties:
+  - name: Terraform 1.5.3
+    url: https://learn.hashicorp.com/terraform/getting-started/install.html
 #  description of this project
 description: |-
   This terraform module is used for requesting or importing SSL/TLS certificate with validation.
@@ -42,44 +42,49 @@ usage : |-
   ### ACM with DNS
   ```hcl
   module "acm" {
-    source                   = "clouddrove/acm/aws"
-    version                  = "1.3.0"
-    name                     = "certificate"
-    environment              = "test"
-    label_order              = ["name","environment"]
-    domain_name              = "clouddrove.com"
-    validation_method        = "DNS"
-    enable_dns_validation    = false
-    enable_aws_certificate   = true
+    source      = "clouddrove/acm/aws"
+    version     = "1.3.0"
+    name        = "certificate"
+    environment = "test"
+    label_order = ["name", "environment"]
+  
+    enable_aws_certificate    = true
+    domain_name               = "clouddrove.com"
+    subject_alternative_names = ["www.clouddrove.com"]
+    validation_method         = "DNS"
+    enable_dns_validation     = false
   }
   ```
-
+  
   ### ACM with Email
   ```hcl
   module "acm" {
-    source                = "clouddrove/acm/aws"
-    version               = "1.3.0"
-    name                  = "certificate"
-    environment           = "test"
-    label_order          = ["name","environment"]
-    domain_name           = "clouddrove.com"
-    validation_method     = "EMAIL"
-    validate_certificate  = false
-    enable_aws_certificate = true
+    source      = "clouddrove/acm/aws"
+    version     = "1.3.0"
+    name        = "certificate"
+    environment = "test"
+    label_order = ["name", "environment"]
+  
+    validate_certificate      = false
+    domain_name               = "clouddrove.com"
+    subject_alternative_names = ["www.clouddrove.com"]
+    validation_method         = "EMAIL"
+    enable_aws_certificate    = true
   }
   ```
 
   ### ACM with Import Certificate
   ```hcl
   module "acm" {
-    source              = "clouddrove/acm/aws"
-    version             = "1.3.0"
-    name                = "certificate"
-    environment         = "test"
-    label_order         = ["name","environment"]
-    private_key         = "./../../../clouddrove-private-key.pem"
-    certificate_body    = "./../../../clouddrove-cert.pem"
-    certificate_chain   = "./../../../clouddrove-chain.crt"
-    import_certificate  = true
+    source      = "clouddrove/acm/aws"
+    version     = "1.3.0"
+    name        = "certificate"
+    environment = "test"
+    label_order = ["name", "environment"]
+  
+    import_certificate = true
+    private_key        = "./../../../clouddrove-private-key.pem"
+    certificate_body   = "./../../../clouddrove-cert.pem"
+    certificate_chain  = "./../../../clouddrove-chain.crt"
   }
   ```
