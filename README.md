@@ -13,17 +13,14 @@
 
 <p align="center">
 
-<a href="https://www.terraform.io">
-  <img src="https://img.shields.io/badge/Terraform-v1.1.7-green" alt="Terraform">
-</a>
-<a href="LICENSE.md">
-  <img src="https://img.shields.io/badge/License-APACHE-blue.svg" alt="Licence">
+<a href="https://github.com/clouddrove/terraform-aws-acm/releases/latest">
+  <img src="https://img.shields.io/github/release/clouddrove/terraform-aws-acm.svg" alt="Latest Release">
 </a>
 <a href="https://github.com/clouddrove/terraform-aws-acm/actions/workflows/tfsec.yml">
   <img src="https://github.com/clouddrove/terraform-aws-acm/actions/workflows/tfsec.yml/badge.svg" alt="tfsec">
 </a>
-<a href="https://github.com/clouddrove/terraform-aws-acm/actions/workflows/terraform.yml">
-  <img src="https://github.com/clouddrove/terraform-aws-acm/actions/workflows/terraform.yml/badge.svg" alt="static-checks">
+<a href="LICENSE.md">
+  <img src="https://img.shields.io/badge/License-APACHE-blue.svg" alt="Licence">
 </a>
 
 
@@ -56,11 +53,7 @@ We have [*fifty plus terraform modules*][terraform_modules]. A few of them are c
 ## Prerequisites
 
 This module has a few dependencies: 
-
-- [Terraform 1.x.x](https://learn.hashicorp.com/terraform/getting-started/install.html)
-- [Go](https://golang.org/doc/install)
-- [github.com/stretchr/testify/assert](https://github.com/stretchr/testify)
-- [github.com/gruntwork-io/terratest/modules/terraform](https://github.com/gruntwork-io/terratest)
+- [Terraform 1.5.3](https://learn.hashicorp.com/terraform/getting-started/install.html)
 
 
 
@@ -78,45 +71,50 @@ Here are some examples of how you can use this module in your inventory structur
 ### ACM with DNS
 ```hcl
 module "acm" {
-  source                   = "clouddrove/acm/aws"
-  version                  = "1.3.0"
-  name                     = "certificate"
-  environment              = "test"
-  label_order              = ["name","environment"]
-  domain_name              = "clouddrove.com"
-  validation_method        = "DNS"
-  enable_dns_validation    = false
-  enable_aws_certificate   = true
+  source      = "clouddrove/acm/aws"
+  version     = "1.3.0"
+  name        = "certificate"
+  environment = "test"
+  label_order = ["name", "environment"]
+
+  enable_aws_certificate    = true
+  domain_name               = "clouddrove.com"
+  subject_alternative_names = ["www.clouddrove.com"]
+  validation_method         = "DNS"
+  enable_dns_validation     = false
 }
 ```
 
 ### ACM with Email
 ```hcl
 module "acm" {
-  source                = "clouddrove/acm/aws"
-  version               = "1.3.0"
-  name                  = "certificate"
-  environment           = "test"
-  label_order          = ["name","environment"]
-  domain_name           = "clouddrove.com"
-  validation_method     = "EMAIL"
-  validate_certificate  = false
-  enable_aws_certificate = true
+  source      = "clouddrove/acm/aws"
+  version     = "1.3.0"
+  name        = "certificate"
+  environment = "test"
+  label_order = ["name", "environment"]
+
+  validate_certificate      = false
+  domain_name               = "clouddrove.com"
+  subject_alternative_names = ["www.clouddrove.com"]
+  validation_method         = "EMAIL"
+  enable_aws_certificate    = true
 }
 ```
 
 ### ACM with Import Certificate
 ```hcl
 module "acm" {
-  source              = "clouddrove/acm/aws"
-  version             = "1.3.0"
-  name                = "certificate"
-  environment         = "test"
-  label_order         = ["name","environment"]
-  private_key         = "./../../../clouddrove-private-key.pem"
-  certificate_body    = "./../../../clouddrove-cert.pem"
-  certificate_chain   = "./../../../clouddrove-chain.crt"
-  import_certificate  = true
+  source      = "clouddrove/acm/aws"
+  version     = "1.3.0"
+  name        = "certificate"
+  environment = "test"
+  label_order = ["name", "environment"]
+
+  import_certificate = true
+  private_key        = "./../../../clouddrove-private-key.pem"
+  certificate_body   = "./../../../clouddrove-cert.pem"
+  certificate_chain  = "./../../../clouddrove-chain.crt"
 }
 ```
 
@@ -129,33 +127,38 @@ module "acm" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| attributes | Additional attributes (e.g. `1`). | `list(any)` | `[]` | no |
+| allow\_overwrite | Whether to allow overwrite of Route53 records | `bool` | `true` | no |
 | certificate\_body | Path of certificate body. | `string` | `"~"` | no |
 | certificate\_chain | Path of certificate chain. | `string` | `""` | no |
 | domain\_name | A domain name for which the certificate should be issued. | `string` | `""` | no |
-| enable\_acm\_certificate | Set to false to prevent the creation of a acm certificate. | `bool` | `true` | no |
-| enable\_aws\_certificate | Set to false to prevent the creation of a acm certificate. | `bool` | `false` | no |
+| enable | Whether or not to enable the entire module or not. | `bool` | `true` | no |
+| enable\_aws\_certificate | Set to false to prevent the creation of a acm certificate. | `bool` | `true` | no |
 | enable\_dns\_validation | Set to prevent validation of DNS. | `bool` | `false` | no |
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
 | import\_certificate | Set to true or false to decide the creation and import of a acm certificate. | `bool` | `false` | no |
-| label\_order | Label order, e.g. `name`,`application`. | `list(any)` | `[]` | no |
+| label\_order | Label order, e.g. `name`,`application`. | `list(any)` | <pre>[<br>  "name",<br>  "environment"<br>]</pre> | no |
 | managedby | ManagedBy, eg 'CloudDrove' | `string` | `"hello@clouddrove.com"` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
 | private\_key | Path of private key. | `string` | `""` | no |
+| private\_zone | Used with name field to get a private Hosted Zone. | `bool` | `false` | no |
 | repository | Terraform current module repo | `string` | `"https://github.com/clouddrove/terraform-aws-acm"` | no |
 | subject\_alternative\_names | Set of domains that should be SANs in the issued certificate. To remove all elements of a previously configured list, set this value equal to an empty list ([]) or use the terraform taint command to trigger recreation. | `list(any)` | `[]` | no |
-| tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map(any)` | `{}` | no |
 | ttl | Time to live. | `number` | `600` | no |
 | validate\_certificate | Set to false to prevent the validation of a acm certificate. | `bool` | `false` | no |
 | validation\_method | Which method to use for validation, DNS or EMAIL. | `string` | `""` | no |
+| validation\_option | The domain name that you want ACM to use to send you validation emails. This domain name is the suffix of the email addresses that you want ACM to use. | `any` | `{}` | no |
+| validation\_record\_fqdns | When validation is set to DNS and the DNS validation records are set externally, provide the fqdns for the validation | `list(string)` | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
+| acm\_certificate\_domain\_validation\_options | A list of attributes to feed into other resources to complete certificate validation. Can have more than one element, e.g. if SANs are defined. Only set if DNS-validation was used. |
+| acm\_certificate\_status | Status of the certificate. |
 | arn | The ARN of the Certificate. |
 | id | The ID of the Certificate. |
 | tags | A mapping of tags to assign to the resource. |
+| validation\_route53\_record\_fqdns | List of FQDNs built using the zone domain and name. |
 
 
 
