@@ -10,7 +10,6 @@ module "acm" {
 
   name        = "certificate"
   environment = "test"
-  label_order = ["name", "environment"]
 
   import_certificate = true
   private_key        = "./../../../clouddrove-private-key.pem"
