@@ -20,7 +20,7 @@ variable "environment" {
 
 variable "label_order" {
   type        = list(any)
-  default     = []
+  default     = ["name", "environment"]
   description = "Label order, e.g. `name`,`application`."
 }
 
@@ -88,7 +88,7 @@ variable "validate_certificate" {
 
 variable "enable_aws_certificate" {
   type        = bool
-  default     = false
+  default     = true
   description = "Set to false to prevent the creation of a acm certificate."
 }
 
