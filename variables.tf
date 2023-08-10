@@ -56,10 +56,10 @@ variable "enable_dns_validation" {
   description = "Set to prevent validation of DNS."
 }
 
-variable "enable_acm_certificate" {
+variable "enable" {
   type        = bool
   default     = true
-  description = "Set to false to prevent the creation of a acm certificate."
+  description = "Whether or not to enable the entire module or not."
 }
 
 variable "private_key" {
