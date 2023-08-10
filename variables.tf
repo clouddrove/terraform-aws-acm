@@ -20,20 +20,8 @@ variable "environment" {
 
 variable "label_order" {
   type        = list(any)
-  default     = []
+  default     = ["name", "environment"]
   description = "Label order, e.g. `name`,`application`."
-}
-
-variable "attributes" {
-  type        = list(any)
-  default     = []
-  description = "Additional attributes (e.g. `1`)."
-}
-
-variable "tags" {
-  type        = map(any)
-  default     = {}
-  description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
 }
 
 variable "managedby" {
@@ -60,7 +48,6 @@ variable "validation_method" {
   type        = string
   default     = ""
   description = "Which method to use for validation, DNS or EMAIL."
-
 }
 
 variable "enable_dns_validation" {
@@ -69,10 +56,10 @@ variable "enable_dns_validation" {
   description = "Set to prevent validation of DNS."
 }
 
-variable "enable_acm_certificate" {
+variable "enable" {
   type        = bool
   default     = true
-  description = "Set to false to prevent the creation of a acm certificate."
+  description = "Whether or not to enable the entire module or not."
 }
 
 variable "private_key" {
@@ -101,7 +88,7 @@ variable "validate_certificate" {
 
 variable "enable_aws_certificate" {
   type        = bool
-  default     = false
+  default     = true
   description = "Set to false to prevent the creation of a acm certificate."
 }
 
@@ -115,4 +102,28 @@ variable "ttl" {
   type        = number
   default     = 600
   description = "Time to live."
+}
+
+variable "validation_option" {
+  type        = any
+  default     = {}
+  description = "The domain name that you want ACM to use to send you validation emails. This domain name is the suffix of the email addresses that you want ACM to use."
+}
+
+variable "validation_record_fqdns" {
+  type        = list(string)
+  default     = []
+  description = "When validation is set to DNS and the DNS validation records are set externally, provide the fqdns for the validation"
+}
+
+variable "allow_overwrite" {
+  type        = bool
+  default     = true
+  description = "Whether to allow overwrite of Route53 records"
+}
+
+variable "private_zone" {
+  type        = bool
+  default     = false
+  description = "Used with name field to get a private Hosted Zone."
 }

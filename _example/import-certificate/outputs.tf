@@ -1,5 +1,5 @@
 output "arn" {
-  value       = module.acm.*.arn
+  value       = module.acm[*].arn
   description = "The ARN of the certificate"
 }
 
