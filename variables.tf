@@ -46,7 +46,7 @@ variable "subject_alternative_names" {
 
 variable "validation_method" {
   type        = string
-  default     = ""
+  default     = "DNS"
   description = "Which method to use for validation, DNS or EMAIL."
 }
 
