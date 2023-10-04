@@ -2,6 +2,10 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+locals {
+  domain = "clouddrove.com"
+}
+
 ##-----------------------------------------------------------------------------
 ## acm Module call with DNS.
 ##-----------------------------------------------------------------------------
@@ -12,5 +16,5 @@ module "acm" {
   environment = "test"
 
   domain_name               = "clouddrove.com"
-  subject_alternative_names = ["*.${var.domain}", "www.${var.domain}"]
+  subject_alternative_names = ["*.${local.domain}", "www.${local.domain}"]
 }
