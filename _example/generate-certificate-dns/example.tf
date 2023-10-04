@@ -12,7 +12,5 @@ module "acm" {
   environment = "test"
 
   domain_name               = "clouddrove.com"
-  subject_alternative_names = ["www.clouddrove.com"]
-  validation_method         = "DNS"
-  enable_dns_validation     = false
+  subject_alternative_names = ["*.${var.domain}", "www.${var.domain}"]
 }
