@@ -8,5 +8,5 @@ jobs:
     secrets:
       GITHUB: ${{ secrets.GITHUB }}
     with:
-      tfcheck: 'tf-checks-import-certificate-example / Evaluate Terraform versions (1.5.4, ./_example/import-certificate/)'
+      tfcheck: 'tf-checks-generate-certificate-dns-example / Check code format'
 ...
