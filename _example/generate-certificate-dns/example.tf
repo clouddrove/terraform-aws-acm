@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 locals {
-  domain = "clouddrove.ca"
+  domain = "clouddrove.com"
 }
 
 ##-----------------------------------------------------------------------------
@@ -14,6 +14,6 @@ module "acm" {
 
   name                      = "certificate"
   environment               = "test"
-  domain_name               = "clouddrove.ca"
+  domain_name               = "clouddrove.com"
   subject_alternative_names = ["www.${local.domain}", "*.${local.domain}"]
 }
