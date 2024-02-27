@@ -1,9 +1,9 @@
 provider "aws" {
-  region = "eu-west-1"
+  region = "us-east-1"
 }
 
 locals {
-  domain = "clouddrove.com"
+  domain = "clouddrove.ca"
 }
 
 ##-----------------------------------------------------------------------------
@@ -12,9 +12,8 @@ locals {
 module "acm" {
   source = "./../../"
 
-  name        = "certificate"
-  environment = "test"
-
-  domain_name               = "clouddrove.com"
-  subject_alternative_names = ["*.${local.domain}", "www.${local.domain}"]
+  name                      = "certificate"
+  environment               = "test"
+  domain_name               = "clouddrove.ca"
+  subject_alternative_names = ["www.${local.domain}", "*.${local.domain}"]
 }

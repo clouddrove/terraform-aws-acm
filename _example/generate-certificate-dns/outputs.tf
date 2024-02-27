@@ -22,3 +22,5 @@ output "validation_route53_record_fqdns" {
   value       = module.acm.validation_route53_record_fqdns
   description = "List of FQDNs built using the zone domain and name."
 }
+
+

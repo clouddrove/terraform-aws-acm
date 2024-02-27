@@ -86,6 +86,8 @@ variable "validate_certificate" {
   description = "Set to false to prevent the validation of a acm certificate."
 }
 
+
+
 variable "enable_aws_certificate" {
   type        = bool
   default     = true
@@ -127,3 +129,5 @@ variable "private_zone" {
   default     = false
   description = "Used with name field to get a private Hosted Zone."
 }
+
+
