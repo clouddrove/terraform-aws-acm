@@ -26,7 +26,8 @@ output "acm_certificate_status" {
   description = "Status of the certificate."
 }
 
+
 output "validation_route53_record_fqdns" {
-  value       = aws_route53_record.default[*].fqdn
+  value       = [for record in aws_route53_record.default : record.fqdn]
   description = "List of FQDNs built using the zone domain and name."
 }
