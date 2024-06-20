@@ -6,15 +6,15 @@ on:
   workflow_dispatch:
 jobs:
   tf-checks-generate-certificate-dns-example:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.2.5
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.2.6
     with:
       working_directory: './examples/generate-certificate-dns/'
   tf-checks-generate-certificate-email-example:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.2.5
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.2.6
     with:
       working_directory: './examples/generate-certificate-email/'
   tf-checks-import-certificate-example:
-    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.2.5
+    uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@1.2.6
     with:
       working_directory: './examples/import-certificate/'
 
