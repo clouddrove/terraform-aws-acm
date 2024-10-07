@@ -57,7 +57,7 @@ usage : |-
     name        = "certificate"
     environment = "test"
     label_order = ["name", "environment"]
-  
+
     enable_aws_certificate    = true
     domain_name               = "clouddrove.com"
     subject_alternative_names = ["www.clouddrove.com"]
@@ -65,7 +65,7 @@ usage : |-
     enable_dns_validation     = false
   }
   ```
-  
+
   ### ACM with Email
   ```hcl
   module "acm" {
@@ -74,7 +74,7 @@ usage : |-
     name        = "certificate"
     environment = "test"
     label_order = ["name", "environment"]
-  
+
     validate_certificate      = false
     domain_name               = "clouddrove.com"
     subject_alternative_names = ["www.clouddrove.com"]
@@ -91,7 +91,7 @@ usage : |-
     name        = "certificate"
     environment = "test"
     label_order = ["name", "environment"]
-  
+
     import_certificate = true
     private_key        = "./../../../clouddrove-private-key.pem"
     certificate_body   = "./../../../clouddrove-cert.pem"

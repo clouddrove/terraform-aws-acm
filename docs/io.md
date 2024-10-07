@@ -34,4 +34,3 @@
 | id | The ID of the Certificate. |
 | tags | A mapping of tags to assign to the resource. |
 | validation\_route53\_record\_fqdns | List of FQDNs built using the zone domain and name. |
-
