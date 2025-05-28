@@ -23,4 +23,7 @@ output "validation_route53_record_fqdns" {
   description = "List of FQDNs built using the zone domain and name."
 }
 
-
+output "certificate_transparency_logging_preference" {
+  value       = module.acm.certificate_transparency_logging_preference
+  description = "Certificate transparency logging preference."
+}

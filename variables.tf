@@ -128,4 +128,15 @@ variable "private_zone" {
   description = "Used with name field to get a private Hosted Zone."
 }
 
+variable "key_algorithm" {
+  type        = string
+  default     = null
+  description = "used to generate the public/private key pair for the certificate. Valid values: RSA_2048, RSA_4096, EC_prime256v1, EC_secp384r1, EC_secp521r1."
+}
+
+variable "transparency_logging_enabled" {
+  type        = bool
+  default     = false
+  description = "Whether to enable certificate transparency logging. Defaults to true. Set to false to disable."
+}
 

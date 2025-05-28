@@ -45,6 +45,7 @@ resource "aws_acm_certificate" "cert" {
   domain_name               = var.domain_name
   validation_method         = var.validation_method
   subject_alternative_names = var.subject_alternative_names
+  key_algorithm             = var.key_algorithm
   tags                      = module.labels.tags
 
   dynamic "validation_option" {
@@ -55,6 +56,14 @@ resource "aws_acm_certificate" "cert" {
       validation_domain = validation_option.value["validation_domain"]
     }
   }
+
+  dynamic "options" {
+    for_each = var.transparency_logging_enabled != null ? [1] : []
+    content {
+      certificate_transparency_logging_preference = var.transparency_logging_enabled ? "ENABLED" : "DISABLED"
+    }
+  }
+
 
   lifecycle {
     create_before_destroy = true
