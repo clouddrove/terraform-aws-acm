@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 locals {
-  domain = "clouddrove.com"
+  domain = "ld.clouddrove.ca"
 }
 
 ##-----------------------------------------------------------------------------
@@ -12,8 +12,11 @@ locals {
 module "acm" {
   source = "./../../"
 
-  name                      = "certificate"
-  environment               = "test"
-  domain_name               = "clouddrove.com"
-  subject_alternative_names = ["www.${local.domain}", "*.${local.domain}"]
+  name                         = "certificate"
+  environment                  = "test"
+  enable_dns_validation        = true
+  domain_name                  = "ld.clouddrove.ca"
+  subject_alternative_names    = ["www.${local.domain}", "*.${local.domain}"]
+  key_algorithm                = "RSA_2048"
+  transparency_logging_enabled = false
 }

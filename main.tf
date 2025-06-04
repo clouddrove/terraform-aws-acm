@@ -45,6 +45,7 @@ resource "aws_acm_certificate" "cert" {
   domain_name               = var.domain_name
   validation_method         = var.validation_method
   subject_alternative_names = var.subject_alternative_names
+  key_algorithm             = var.key_algorithm
   tags                      = module.labels.tags
 
   dynamic "validation_option" {
@@ -56,6 +57,14 @@ resource "aws_acm_certificate" "cert" {
     }
   }
 
+  dynamic "options" {
+    for_each = var.transparency_logging_enabled != null ? [1] : []
+    content {
+      certificate_transparency_logging_preference = var.transparency_logging_enabled ? "ENABLED" : "DISABLED"
+    }
+  }
+
+
   lifecycle {
     create_before_destroy = true
   }
@@ -65,7 +74,7 @@ resource "aws_acm_certificate" "cert" {
 ## Most commonly, this resource is used together with aws_route53_record and aws_acm_certificate to request a DNS validated certificate, deploy the required validation records and wait for validation to complete.
 ##----------------------------------------------------------------------------------
 resource "aws_acm_certificate_validation" "cert" {
-  count                   = var.enable && var.validate_certificate ? 1 : 0
+  count                   = var.enable && var.enable_dns_validation && var.validate_certificate ? 1 : 0
   certificate_arn         = join("", aws_acm_certificate.cert[*].arn)
   validation_record_fqdns = flatten([aws_route53_record.default[*].fqdn, var.validation_record_fqdns])
 
@@ -84,13 +93,13 @@ data "aws_route53_zone" "default" {
 ## A Route 53 record contains authoritative DNS information for a specified DNS name. DNS records are most commonly used to map a name to an IP Address..
 ##----------------------------------------------------------------------------------
 resource "aws_route53_record" "default" {
-  for_each = {
+  for_each = var.enable_dns_validation ? {
     for record in aws_acm_certificate.cert[0].domain_validation_options[*] : record.domain_name => {
       name   = record.resource_record_name
       record = record.resource_record_value
       type   = record.resource_record_type
     }
-  }
+  } : {}
 
   allow_overwrite = var.allow_overwrite
   name            = each.value.name
