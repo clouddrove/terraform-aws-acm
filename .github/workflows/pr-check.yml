@@ -1,4 +1,3 @@
-
 name: 'PR Validation'
 
 on:
@@ -11,19 +10,7 @@ on:
 
 jobs:
   pr-validation:
-    uses: clouddrove/github-shared-workflows/.github/workflows/pr_checks.yml@master
+    uses: clouddrove/github-shared-workflows/.github/workflows/pr_checks.yml@1.4.2
     secrets: inherit
     with:
-      types: |
-        fix
-        feat
-        docs
-        ci
-        chore
-        test
-        refactor
-        style
-        perf
-        build
-        revert
-      checkLabels: true  # Set to false to disable label checking
+      checkLabels: true
