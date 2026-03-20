@@ -9,14 +9,17 @@ jobs:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
       working_directory: './examples/generate-certificate-dns/'
+      provider: none
   tf-checks-generate-certificate-email-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
       working_directory: './examples/generate-certificate-email/'
+      provider: none
   tf-checks-import-certificate-example:
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
       working_directory: './examples/import-certificate/'
+      provider: none
 
 
 
