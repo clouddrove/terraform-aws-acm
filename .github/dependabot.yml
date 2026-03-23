@@ -13,6 +13,8 @@ updates:
       - "clouddrove-ci"
     reviewers:
       - "approvers"
+    commit-message:
+      prefix: "chore(deps)"
 
   - package-ecosystem: "terraform" # See documentation for possible values
     directory: "/" # Location of package manifests
@@ -26,6 +28,8 @@ updates:
       - "approvers"
     # Allow up to 3 open pull requests for pip dependencies
     open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(deps)"
 
   - package-ecosystem: "terraform" # See documentation for possible values
     directory: "/examples/generate-certificate-dns" # Location of package manifests
@@ -39,6 +43,8 @@ updates:
       - "approvers"
     # Allow up to 3 open pull requests for pip dependencies
     open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(deps)"
 
   - package-ecosystem: "terraform" # See documentation for possible values
     directory: "/examples/generate-certificate-email" # Location of package manifests
@@ -52,6 +58,8 @@ updates:
       - "approvers"
     # Allow up to 3 open pull requests for pip dependencies
     open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(deps)"
 
   - package-ecosystem: "terraform" # See documentation for possible values
     directory: "/examples/import-certificate" # Location of package manifests
@@ -65,3 +73,5 @@ updates:
       - "approvers"
     # Allow up to 3 open pull requests for pip dependencies
     open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore(deps)"
