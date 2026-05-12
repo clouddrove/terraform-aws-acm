@@ -1,25 +1,42 @@
 name: tf-checks
+permissions:
+  id-token: write
+  contents: read
 on:
-  push:
-    branches: [ master ]
   pull_request:
-  workflow_dispatch:
+    paths:
+      - '**/*.tf'
+      - '*.tf'
 jobs:
   tf-checks-generate-certificate-dns-example:
+    if: github.actor != 'dependabot[bot]'
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
       working_directory: './examples/generate-certificate-dns/'
-      provider: none
+      provider: aws
+      enable_plan: true
+      show_plan: false
+    secrets:
+      BUILD_ROLE: ${{ secrets.BUILD_ROLE }}
   tf-checks-generate-certificate-email-example:
+    if: github.actor != 'dependabot[bot]'
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
       working_directory: './examples/generate-certificate-email/'
-      provider: none
+      provider: aws
+      enable_plan: true
+      show_plan: false
+    secrets:
+      BUILD_ROLE: ${{ secrets.BUILD_ROLE }}
   tf-checks-import-certificate-example:
+    if: github.actor != 'dependabot[bot]'
     uses: clouddrove/github-shared-workflows/.github/workflows/tf-checks.yml@master
     with:
       working_directory: './examples/import-certificate/'
-      provider: none
-
+      provider: aws
+      enable_plan: true
+      show_plan: false
+    secrets:
+      BUILD_ROLE: ${{ secrets.BUILD_ROLE }}
 
 
