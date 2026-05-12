@@ -11,7 +11,7 @@ module "acm" {
   name        = "certificate"
   environment = "test"
 
-  validate_certificate      = false
+  enable_dns_validation     = false
   domain_name               = "clouddrove.com"
   subject_alternative_names = ["www.clouddrove.com"]
   validation_method         = "EMAIL"

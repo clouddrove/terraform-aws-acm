@@ -8,7 +8,7 @@ variable "name" {
 
 variable "repository" {
   type        = string
-  default     = "https://github.com/clouddrove/terraform-aws-acm"
+  default     = ""
   description = "Terraform current module repo"
 }
 
@@ -26,8 +26,14 @@ variable "label_order" {
 
 variable "managedby" {
   type        = string
-  default     = "hello@clouddrove.com"
+  default     = ""
   description = "ManagedBy, eg 'CloudDrove'"
+}
+
+variable "tags" {
+  type        = map(any)
+  default     = {}
+  description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
 }
 
 # Module      : ACM CERTIFICATE
@@ -78,12 +84,6 @@ variable "certificate_chain" {
   type        = string
   default     = ""
   description = "Path of certificate chain."
-}
-
-variable "validate_certificate" {
-  type        = bool
-  default     = false
-  description = "Set to false to prevent the validation of a acm certificate."
 }
 
 variable "enable_aws_certificate" {
