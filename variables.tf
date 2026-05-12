@@ -86,12 +86,6 @@ variable "certificate_chain" {
   description = "Path of certificate chain."
 }
 
-variable "validate_certificate" {
-  type        = bool
-  default     = false
-  description = "Set to false to prevent the validation of a acm certificate."
-}
-
 variable "enable_aws_certificate" {
   type        = bool
   default     = true
