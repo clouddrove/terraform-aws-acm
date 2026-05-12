@@ -12,14 +12,14 @@
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
 | import\_certificate | Set to true or false to decide the creation and import of a acm certificate. | `bool` | `false` | no |
 | label\_order | Label order, e.g. `name`,`application`. | `list(any)` | <pre>[<br>  "name",<br>  "environment"<br>]</pre> | no |
-| managedby | ManagedBy, eg 'CloudDrove' | `string` | `"hello@clouddrove.com"` | no |
+| managedby | ManagedBy, eg 'CloudDrove' | `string` | `""` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
 | private\_key | Path of private key. | `string` | `""` | no |
 | private\_zone | Used with name field to get a private Hosted Zone. | `bool` | `false` | no |
-| repository | Terraform current module repo | `string` | `"https://github.com/clouddrove/terraform-aws-acm"` | no |
+| repository | Terraform current module repo | `string` | `""` | no |
 | subject\_alternative\_names | Set of domains that should be SANs in the issued certificate. To remove all elements of a previously configured list, set this value equal to an empty list ([]) or use the terraform taint command to trigger recreation. | `list(any)` | `[]` | no |
+| tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map(any)` | `{}` | no |
 | ttl | Time to live. | `number` | `600` | no |
-| validate\_certificate | Set to false to prevent the validation of a acm certificate. | `bool` | `false` | no |
 | validation\_method | Which method to use for validation, DNS or EMAIL. | `string` | `"DNS"` | no |
 | validation\_option | The domain name that you want ACM to use to send you validation emails. This domain name is the suffix of the email addresses that you want ACM to use. | `any` | `{}` | no |
 | validation\_record\_fqdns | When validation is set to DNS and the DNS validation records are set externally, provide the fqdns for the validation | `list(string)` | `[]` | no |
