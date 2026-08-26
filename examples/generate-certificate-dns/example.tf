@@ -16,4 +16,6 @@ module "acm" {
   environment               = "test"
   domain_name               = "clouddrove.com"
   subject_alternative_names = ["www.${local.domain}", "*.${local.domain}"]
+
+  key_algorithm             = "EC_prime256v1"
 }
