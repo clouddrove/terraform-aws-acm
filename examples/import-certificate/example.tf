@@ -8,11 +8,10 @@ provider "aws" {
 module "acm" {
   source = "./../../"
 
-  name        = "certificate"
+  name        = "certificate-test"
   environment = "test"
 
-  import_certificate = true
-  private_key        = "./../../../clouddrove-private-key.pem"
-  certificate_body   = "./../../../clouddrove-cert.pem"
-  certificate_chain  = "./../../../clouddrove-chain.crt"
+  private_key       = "${path.module}/clouddrove-private-key.pem"
+  certificate_body  = "${path.module}/clouddrove-cert.pem"
+  certificate_chain = "${path.module}/clouddrove-chain.crt"
 }
