@@ -8,7 +8,7 @@ provider "aws" {
 module "acm" {
   source = "./../../"
 
-  name        = "certificate-test"
+  name        = "certificate"
   environment = "test"
 
   private_key       = "${path.module}/clouddrove-private-key.pem"
