@@ -11,6 +11,7 @@
 | enable\_dns\_validation | Set to prevent validation of DNS. | `bool` | `false` | no |
 | environment | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
 | import\_certificate | Set to true or false to decide the creation and import of a acm certificate. | `bool` | `false` | no |
+| key\_algorithm | The algorithm used for the ACM certificate key pair. | `string` | `"RSA_2048"` | no |
 | label\_order | Label order, e.g. `name`,`application`. | `list(any)` | <pre>[<br>  "name",<br>  "environment"<br>]</pre> | no |
 | managedby | ManagedBy, eg 'CloudDrove' | `string` | `""` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
