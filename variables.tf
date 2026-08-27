@@ -62,6 +62,12 @@ variable "enable_dns_validation" {
   description = "Set to prevent validation of DNS."
 }
 
+variable "key_algorithm" {
+  type        = string
+  description = "The algorithm used for the ACM certificate key pair."
+  default     = "RSA_2048"
+}
+
 variable "enable" {
   type        = bool
   default     = true
