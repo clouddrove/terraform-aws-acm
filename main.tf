@@ -44,10 +44,11 @@ resource "aws_acm_certificate" "cert" {
   count = var.enable && var.enable_aws_certificate ? 1 : 0
 
   domain_name               = var.domain_name
-  validation_method         = var.validation_method
+  validation_method         = var.certificate_authority_arn == null ? var.validation_method : null
   subject_alternative_names = var.subject_alternative_names
   key_algorithm             = var.key_algorithm
   tags                      = module.labels.tags
+  certificate_authority_arn = var.certificate_authority_arn
 
   dynamic "validation_option" {
     for_each = var.validation_option
@@ -57,7 +58,9 @@ resource "aws_acm_certificate" "cert" {
       validation_domain = validation_option.value["validation_domain"]
     }
   }
-
+  options {
+    certificate_transparency_logging_preference = var.certificate_transparency_logging_preference
+  }
   lifecycle {
     create_before_destroy = true
   }

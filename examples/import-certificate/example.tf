@@ -11,6 +11,10 @@ module "acm" {
   name        = "certificate"
   environment = "test"
 
+  import_certificate     = true
+  enable_aws_certificate = false
+  enable_dns_validation  = false
+
   private_key       = "${path.module}/clouddrove-private-key.pem"
   certificate_body  = "${path.module}/clouddrove-cert.pem"
   certificate_chain = "${path.module}/clouddrove-chain.crt"

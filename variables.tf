@@ -30,6 +30,17 @@ variable "managedby" {
   description = "ManagedBy, eg 'CloudDrove'"
 }
 
+variable "certificate_authority_arn" {
+  type        = string
+  default     = null
+  description = "ARN of an ACM Private Certificate Authority (PCA) to issue a private certificate."
+}
+
+variable "certificate_transparency_logging_preference" {
+  type        = string
+  default     = "ENABLED"
+  description = "Specifies whether certificate details should be added to a certificate transparency log (ENABLED or DISABLED)."
+}
 variable "tags" {
   type        = map(any)
   default     = {}
